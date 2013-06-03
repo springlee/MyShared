@@ -1,92 +1,74 @@
 package demo;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 
-import javax.swing.JPanel;
-
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.data.time.Month;
-import org.jfree.data.time.TimeSeries;
-import org.jfree.data.time.TimeSeriesCollection;
-import org.jfree.data.xy.XYDataset;
+import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.title.LegendTitle;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 import org.jfree.ui.RefineryUtilities;
- 
-public class PieChartDemo4 extends ApplicationFrame { 
-  /** 
-   *  
-   */ 
-  private static final long serialVersionUID = 2598557557724085474L; 
- 
-  public PieChartDemo4(String string) { 
-    super(string); 
-    JPanel jpanel = createDemoPanel(); 
-    jpanel.setPreferredSize(new Dimension(500, 270)); 
-    setContentPane(jpanel); 
-  } 
- 
-  private static XYDataset createDataset() { 
-	    TimeSeries timeseries = new TimeSeries( 
-	        "L&G European Index Trust"); 
-	    timeseries.add(new Month(2, 2001), 181.8); 
-	    timeseries.add(new Month(3, 2001), 167.3); 
-	    timeseries.add(new Month(4, 2001), 153.8); 
-	    timeseries.add(new Month(5, 2001), 167.6); 
-	    timeseries.add(new Month(6, 2001), 158.8); 
-	    timeseries.add(new Month(7, 2001), 148.3); 
-	    timeseries.add(new Month(8, 2001), 153.9); 
-	    timeseries.add(new Month(9, 2001), 142.7); 
-	    timeseries.add(new Month(10, 2001), 123.2); 
-	    timeseries.add(new Month(11, 2001), 131.8); 
-	    timeseries.add(new Month(12, 2001), 139.6); 
-	    timeseries.add(new Month(1, 2002), 142.9); 
-	    timeseries.add(new Month(2, 2002), 138.7); 
-	    timeseries.add(new Month(3, 2002), 137.3); 
-	    timeseries.add(new Month(4, 2002), 143.9); 
-	    timeseries.add(new Month(5, 2002), 139.8); 
-	    timeseries.add(new Month(6, 2002), 137.0); 
-	    timeseries.add(new Month(7, 2002), 132.8); 
-	    TimeSeries timeseries_0_ = new TimeSeries( 
-	        "L&G UK Index Trust"); 
-	    timeseries_0_.add(new Month(2, 2001), 129.6); 
-	    timeseries_0_.add(new Month(3, 2001), 123.2); 
-	    timeseries_0_.add(new Month(4, 2001), 117.2); 
-	    timeseries_0_.add(new Month(5, 2001), 124.1); 
-	    timeseries_0_.add(new Month(6, 2001), 122.6); 
-	    timeseries_0_.add(new Month(7, 2001), 119.2); 
-	    timeseries_0_.add(new Month(8, 2001), 116.5); 
-	    timeseries_0_.add(new Month(9, 2001), 112.7); 
-	    timeseries_0_.add(new Month(10, 2001), 101.5); 
-	    timeseries_0_.add(new Month(11, 2001), 106.1); 
-	    timeseries_0_.add(new Month(12, 2001), 110.3); 
-	    timeseries_0_.add(new Month(1, 2002), 111.7); 
-	    timeseries_0_.add(new Month(2, 2002), 111.0); 
-	    timeseries_0_.add(new Month(3, 2002), 109.6); 
-	    timeseries_0_.add(new Month(4, 2002), 113.2); 
-	    timeseries_0_.add(new Month(5, 2002), 111.6); 
-	    timeseries_0_.add(new Month(6, 2002), 108.8); 
-	    timeseries_0_.add(new Month(7, 2002), 101.6); 
-	    TimeSeriesCollection timeseriescollection = new TimeSeriesCollection(); 
-	    timeseriescollection.addSeries(timeseries); 
-	    timeseriescollection.addSeries(timeseries_0_); 
-	    return timeseriescollection; 
-	 } 
- 
-  public static JPanel createDemoPanel() { 
-    JFreeChart jfreechart = createChart(createDataset()); 
-    return new ChartPanel(jfreechart); 
-  } 
- 
-  private static JFreeChart createChart(XYDataset createDataset) {
-	// TODO Auto-generated method stub
-	return null;
-}
 
-public static void main(String[] strings) { 
-    PieChartDemo4 piechartdemo1 = new PieChartDemo4("Pie Chart Demo 1"); 
-    piechartdemo1.pack(); 
-    RefineryUtilities.centerFrameOnScreen(piechartdemo1); 
-    piechartdemo1.setVisible(true); 
-  } 
-} 
+public class PieChartDemo4 extends ApplicationFrame {
+	/** 
+   *  
+   */
+	private static final long serialVersionUID = 2598557557724085474L;
+
+	public PieChartDemo4(String title) {
+		super(title);
+		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+		dataset.addValue(10.0, "加班次数", "第一季度");
+		dataset.addValue(15.0, "加班次数", "第二季度"); 
+		dataset.addValue(13.0, "加班次数", "第三季度");
+		dataset.addValue(9.0, "加班次数", "第四季度");
+		dataset.addValue(2.0, "缺勤次数", "第一季度");
+		dataset.addValue(3.0, "缺勤次数", "第二季度");
+		dataset.addValue(2.0, "缺勤次数", "第三季度");
+		dataset.addValue(3.0, "缺勤次数", "第四季度");
+		JFreeChart chart = ChartFactory.createBarChart("个人出勤记录统计", title,"次数",dataset,PlotOrientation.VERTICAL, 
+		true, 
+		true, 
+		false 
+		);
+		
+		//标题
+	    TextTitle texttitle = chart.getTitle();
+	    texttitle.setFont(new Font("SimSun", 0, 20));
+	    CategoryPlot plot = chart.getCategoryPlot();// 获得图表区域对象
+	    // 设置图表的纵轴和横轴org.jfree.chart.axis.CategoryAxis
+	    BarRenderer  renderer  = (BarRenderer) plot.getRenderer();
+		renderer.setSeriesPaint(0, Color.gray);
+		renderer.setSeriesPaint(1, Color.orange);
+		renderer.setDrawBarOutline(false); 
+		renderer.setItemMargin(0.0); 
+	    CategoryAxis domainAxis = plot.getDomainAxis();
+	    NumberAxis numberaxis = (NumberAxis) plot.getRangeAxis();
+	    domainAxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN, 11));
+	    domainAxis.setLabelFont(new Font("宋体", Font.PLAIN, 12));
+	    numberaxis.setTickLabelFont(new Font("sans-serif", Font.PLAIN, 12));
+	    numberaxis.setLabelFont(new Font("宋体", Font.PLAIN, 12));
+	    chart.getLegend().setItemFont(new Font("宋体", Font.PLAIN, 12));
+	    //图例
+	    LegendTitle legendTitle=chart.getLegend();
+	    legendTitle.setItemFont(new Font("SimSun", 0, 20));
+		ChartPanel chartPanel = new ChartPanel(chart, false);
+		chartPanel.setPreferredSize(new Dimension(500, 270));
+		setContentPane(chartPanel);
+		}
+	public static void main(String[] args) {
+		PieChartDemo4 demo = new PieChartDemo4("个人出勤记录统计");
+		demo.pack();
+		RefineryUtilities.centerFrameOnScreen(demo);
+		demo.setVisible(true);
+		}
+}
