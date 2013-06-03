@@ -60,7 +60,7 @@ public class PieChartDemo1 extends ApplicationFrame {
 		pieplot.setLabelFont(new Font("SimSun", 0, 20));
 		pieplot.setNoDataMessage("没有数据");
 		pieplot.setCircular(false);
-		pieplot.setLabelGap(0.02);
+		pieplot.setLabelGap(0.1);
 
 		return jfreechart;
 	}

@@ -56,7 +56,6 @@ public class PieChartDemo2 extends ApplicationFrame {
 	    pieplot.setSectionPaint("销售部经理 ", new Color(0, 0, 111)); 
 	    pieplot.setSectionPaint("高级销售员 ", new Color(0, 0, 111)); 
 	    pieplot.setSectionPaint("普通销售员  ", new Color(0, 0, 111)); 
-	    pieplot.setExplodePercent("程序员", 0.8); 
 	    pieplot.setNoDataMessage("没有数据"); 
 	  
 	    pieplot.setLabelGenerator(new StandardPieSectionLabelGenerator( 
